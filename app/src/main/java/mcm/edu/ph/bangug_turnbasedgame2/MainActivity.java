@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView txtPlayerName, txtPlayerHP, txtPlayerMP, txtEnemyName, txtEnemyHP, txtLog, txtTurn;
+    TextView txtPlayerName, txtPlayerHP, txtPlayerMP, txtEnemyName, txtEnemyHP, txtLog, txtTurn, txtTurnLog;
     ImageButton btnTurn, btnSkill1, btnSkill2;
 
     int turnNum = 1;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtLog = findViewById(R.id.txtLog);
         txtTurn = findViewById(R.id.txtTurn);
+        txtTurnLog = findViewById(R.id.txtTurnLog);
 
         txtPlayerName = findViewById(R.id.txtPlayerName);
         txtPlayerHP = findViewById(R.id.txtPlayerHP);
@@ -75,10 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         turnNum = 1;
         skill1CD = 0;
         skill2CD = 0;
-        enemyHP = 1500;
+        enemyHP = 2000;
         playerHP = 2000;
         playerMP = 200;
 
+        txtTurnLog.setText("Turn ("+ turnNum +")");
         txtTurn.setText("Reset game");
         txtPlayerHP.setText(String.valueOf(playerHP));
         txtPlayerMP.setText(String.valueOf(playerMP));
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     skill1CD = 10;
                     burnDuration = 5;
                     turnNum++;
+                    txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerMP.setText(String.valueOf(playerMP));
                     txtLog.setText("player used burn.");
                     txtTurn.setText("Enemy's Turn");
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     enemyHP -= 200;
                     playerHP += 90;
                     turnNum++;
+                    txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerHP.setText(String.valueOf(playerHP));
                     txtPlayerMP.setText(String.valueOf(playerMP));
                     txtEnemyHP.setText(String.valueOf(enemyHP));
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (turnNum % 2 == 1) {
                     enemyHP = enemyHP - playerDPT;
                     turnNum++;
+                    txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtEnemyHP.setText(String.valueOf(enemyHP));
                     txtLog.setText("Player dealt " + playerDPT + " damage!");
                     txtTurn.setText("Enemy's turn");
@@ -175,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else if (turnNum % 2 != 1) {
                     playerHP = playerHP - enemyDPT;
                     turnNum++;
+                    txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerHP.setText(String.valueOf(playerHP));
                     txtLog.setText("Enemy dealt " + enemyDPT + " damage!");
                     txtTurn.setText("Attack");
