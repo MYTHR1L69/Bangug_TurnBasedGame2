@@ -1,0 +1,190 @@
+package mcm.edu.ph.bangug_turnbasedgame2;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    TextView txtPlayerName, txtPlayerHP, txtPlayerMP, txtEnemyName, txtEnemyHP, txtLog, txtTurn;
+    ImageButton btnTurn, btnSkill1, btnSkill2;
+
+    int turnNum = 1;
+    int skill1CD = 0;
+    int skill2CD =0;
+
+    int burnDuration = 0;
+
+    String playerName = "noobmaster69";
+    int playerHP = 2000;
+    int playerMP = 200;
+    int playerMinDMG = 120;
+    int playerMaxDMG = 180;
+
+    String enemyName = "TONDO MAN";
+    int enemyHP = 2000;
+    int enemyMinDMG = 120;
+    int enemyMaxDMG = 150;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        txtLog = findViewById(R.id.txtLog);
+        txtTurn = findViewById(R.id.txtTurn);
+
+        txtPlayerName = findViewById(R.id.txtPlayerName);
+        txtPlayerHP = findViewById(R.id.txtPlayerHP);
+        txtPlayerMP = findViewById(R.id.txtPlayerMP);
+
+        txtEnemyName = findViewById(R.id.txtEnemyName);
+        txtEnemyHP = findViewById(R.id.txtEnemyHP);
+
+        txtPlayerName.setText(playerName);
+        txtPlayerHP.setText(String.valueOf(playerHP));
+        txtPlayerMP.setText(String.valueOf(playerMP));
+
+        txtEnemyName.setText(enemyName);
+        txtEnemyHP.setText(String.valueOf(enemyHP));
+
+        btnTurn = findViewById(R.id.btnTurn);
+        btnSkill1 = findViewById(R.id.btnSkill1);
+        btnSkill2 = findViewById(R.id.btnSkill2);
+
+        btnTurn.setOnClickListener(this);
+        btnSkill1.setOnClickListener(this);
+        btnSkill2.setOnClickListener(this);
+    }
+
+    private void skillCD(){
+        if (skill1CD > 0){
+            skill1CD--;
+        }
+        if (skill2CD > 0) {
+            skill2CD--;
+        }
+    }
+
+    private void resetGame(){
+        turnNum = 1;
+        skill1CD = 0;
+        skill2CD = 0;
+        enemyHP = 1500;
+        playerHP = 2000;
+        playerMP = 200;
+
+        txtTurn.setText("Reset game");
+        txtPlayerHP.setText(String.valueOf(playerHP));
+        txtPlayerMP.setText(String.valueOf(playerMP));
+        txtEnemyHP.setText(String.valueOf(enemyHP));
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (turnNum % 2 == 1){
+            btnSkill1.setEnabled(false);
+            btnSkill2.setEnabled(false);
+        }
+
+        else if (turnNum % 2 != 1){
+            if (skill1CD > 0){
+                btnSkill1.setEnabled(false);
+            }
+            else if (skill1CD == 0){
+                btnSkill1.setEnabled(true);
+            }
+            if (skill2CD > 0){
+                btnSkill2.setEnabled(false);
+            }
+            else if (skill2CD == 0){
+                btnSkill2.setEnabled(true);
+            }
+        }
+
+        if (turnNum % 2 != 1 && burnDuration > 0){
+            enemyHP -= 100;
+            burnDuration -=1;
+        }
+
+        Random randomizer = new Random();
+        int playerDPT = randomizer.nextInt(playerMaxDMG - playerMinDMG) + playerMinDMG;
+        int enemyDPT = randomizer.nextInt(enemyMaxDMG - enemyMinDMG) + enemyMaxDMG;
+
+        switch (v.getId()) {
+            case R.id.btnSkill1:
+                if (playerMP > 80) {
+                    playerMP -= 80;
+                    skill1CD = 10;
+                    burnDuration = 5;
+                    turnNum++;
+                    txtPlayerMP.setText(String.valueOf(playerMP));
+                    txtLog.setText("player used burn.");
+                    txtTurn.setText("Enemy's Turn");
+                } else {
+                    txtLog.setText("Cannot use skill. Your mana is insufficient.");
+                }
+
+                if (enemyHP < 0) {
+                    resetGame();
+                    txtLog.setText("victory!");
+                }
+                break;
+
+            case R.id.btnSkill2:
+                if (playerMP > 50) {
+                    playerMP -= 50;
+                    skill2CD = 8;
+                    enemyHP -= 200;
+                    playerHP += 90;
+                    turnNum++;
+                    txtPlayerHP.setText(String.valueOf(playerHP));
+                    txtPlayerMP.setText(String.valueOf(playerMP));
+                    txtEnemyHP.setText(String.valueOf(enemyHP));
+                    txtLog.setText("player used lifesteal.");
+                    txtTurn.setText("Enemy's turn");
+                } else {
+                    txtLog.setText("Cannot use skill. Your mana is insufficient.");
+                }
+
+                if (enemyHP < 0) {
+                    resetGame();
+                    txtLog.setText("victory!");
+                }
+                break;
+
+            case R.id.btnTurn:
+                if (turnNum % 2 == 1) {
+                    enemyHP = enemyHP - playerDPT;
+                    turnNum++;
+                    txtEnemyHP.setText(String.valueOf(enemyHP));
+                    txtLog.setText("Player dealt " + playerDPT + " damage!");
+                    txtTurn.setText("Enemy's turn");
+                    if (enemyHP < 0) {
+                        resetGame();
+                        txtLog.setText("Player victory!");
+                    }
+                }
+
+                else if (turnNum % 2 != 1) {
+                    playerHP = playerHP - enemyDPT;
+                    turnNum++;
+                    txtPlayerHP.setText(String.valueOf(playerHP));
+                    txtLog.setText("Enemy dealt " + enemyDPT + " damage!");
+                    txtTurn.setText("Attack");
+                    if (playerHP < 0) {
+                        resetGame();
+                        txtLog.setText("Enemy victory!");
+                    }
+                }
+                skillCD();
+                break;
+        }
+    }
+}
