@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/emmanuel/AndroidStudioProjects/Bangug_TurnBasedGame2/app/src/main/res/drawable/anim.xml" value="0.3828125" />
-        <entry key="..\:/Users/emmanuel/AndroidStudioProjects/Bangug_TurnBasedGame2/app/src/main/res/layout/activity_main.xml" value="0.31040564373897706" />
+        <entry key="..\:/Users/emmanuel/AndroidStudioProjects/Bangug_TurnBasedGame2/app/src/main/res/drawable/player_hp_bar.xml" value="0.3828125" />
+        <entry key="..\:/Users/emmanuel/AndroidStudioProjects/Bangug_TurnBasedGame2/app/src/main/res/layout/activity_main.xml" value="0.44027517198248906" />
       </map>
     </option>
   </component>
