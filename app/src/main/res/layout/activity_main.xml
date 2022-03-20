@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@null"
+        android:foregroundTint="#323232"
         app:layout_constraintBottom_toBottomOf="@+id/btnTurn"
         app:layout_constraintStart_toEndOf="@+id/btnTurn"
         app:srcCompat="@drawable/skill_1"
@@ -120,7 +121,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgTurnLog" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="204dp"
+        android:layout_width="604dp"
         android:layout_height="272dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
@@ -128,7 +129,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/gifPlayer"
+            android:id="@+id/gifPlayerIdle"
             android:layout_width="243dp"
             android:layout_height="226dp"
             android:layout_marginStart="16dp"

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String enemyName = "TONDO MAN";
     int enemyHP = 2000;
     int enemyMinDMG = 120;
-    int enemyMaxDMG = 150;
+    int enemyMaxDMG = 170;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnSkill2.setEnabled(false);
         }
 
-        else if (turnNum % 2 != 1){
+        else if (turnNum % 2 == 0){
             if (skill1CD > 0){
                 btnSkill1.setEnabled(false);
             }
@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (turnNum % 2 != 1 && burnDuration > 0){
             enemyHP -= 100;
-            burnDuration -=1;
+            burnDuration--;
         }
 
         Random randomizer = new Random();
         int playerDPT = randomizer.nextInt(playerMaxDMG - playerMinDMG) + playerMinDMG;
-        int enemyDPT = randomizer.nextInt(enemyMaxDMG - enemyMinDMG) + enemyMaxDMG;
+        int enemyDPT = randomizer.nextInt(enemyMaxDMG - enemyMinDMG) + enemyMinDMG;
 
         switch (v.getId()) {
             case R.id.btnSkill1:
@@ -125,10 +125,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     playerMP -= 80;
                     skill1CD = 10;
                     burnDuration = 5;
+                    enemyHP -= 50;
                     turnNum++;
                     txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerMP.setText(String.valueOf(playerMP));
-                    txtLog.setText("player used burn.");
+                    txtEnemyHP.setText(String.valueOf(enemyHP));
+                    txtLog.setText(""+playerName+" used burn! "+enemyName+" will \nbe burned for "+burnDuration+" turns!");
                     txtTurn.setText("Enemy's Turn");
                 } else {
                     txtLog.setText("Cannot use skill. Your mana is insufficient.");
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (enemyHP < 0) {
                     resetGame();
-                    txtLog.setText("victory!");
+                    txtLog.setText(""+playerName+" is too powerful!");
                 }
                 break;
 
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtPlayerHP.setText(String.valueOf(playerHP));
                     txtPlayerMP.setText(String.valueOf(playerMP));
                     txtEnemyHP.setText(String.valueOf(enemyHP));
-                    txtLog.setText("player used lifesteal.");
+                    txtLog.setText(""+playerName+" used lifesteal! He dealt 200 damage \nto "+enemyName+" and gained 90 HP.");
                     txtTurn.setText("Enemy's turn");
                 } else {
                     txtLog.setText("Cannot use skill. Your mana is insufficient.");
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (enemyHP < 0) {
                     resetGame();
-                    txtLog.setText("victory!");
+                    txtLog.setText(""+playerName+" dealt the finishing blow!");
                 }
                 break;
 
@@ -169,11 +171,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNum++;
                     txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtEnemyHP.setText(String.valueOf(enemyHP));
-                    txtLog.setText("Player dealt " + playerDPT + " damage!");
+                    txtLog.setText(""+playerName+" dealt "+playerDPT+" damage to "+enemyName+"!");
                     txtTurn.setText("Enemy's turn");
                     if (enemyHP < 0) {
                         resetGame();
-                        txtLog.setText("Player victory!");
+                        txtLog.setText(""+playerName+" dealt "+playerDPT+" damage and killed\n"+enemyName+"! He is victorious!");
                     }
                 }
 
@@ -182,11 +184,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNum++;
                     txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerHP.setText(String.valueOf(playerHP));
-                    txtLog.setText("Enemy dealt " + enemyDPT + " damage!");
+                    txtLog.setText(""+enemyName+" dealt "+enemyDPT+" damage to "+playerName+"!");
                     txtTurn.setText("Attack");
                     if (playerHP < 0) {
                         resetGame();
-                        txtLog.setText("Enemy victory!");
+                        txtLog.setText(""+enemyName+" kills "+playerName+"!\n LMAOO U A LOSER");
                     }
                 }
                 skillCD();
