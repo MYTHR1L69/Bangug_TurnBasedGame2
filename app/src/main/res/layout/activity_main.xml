@@ -35,7 +35,7 @@
         android:layout_marginTop="232dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hud_box" />
+        app:srcCompat="@drawable/hud_name" />
 
     <TextView
         android:id="@+id/txtLog"
