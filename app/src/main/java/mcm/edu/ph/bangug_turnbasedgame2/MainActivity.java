@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         turnNum = 1;
         skill1CD = 0;
         skill2CD = 0;
-        enemyHP = 2000;
-        playerHP = 2500;
+        enemyHP = 2500;
+        playerHP = 2000;
         playerMP = 200;
 
         txtTurnLog.setText("Turn ("+ turnNum +")");
