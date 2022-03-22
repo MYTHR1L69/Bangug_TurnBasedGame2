@@ -41,6 +41,7 @@
         android:id="@+id/txtLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/minecraft"
         android:text="Press Start to begin"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imgTxtLog"
@@ -64,12 +65,12 @@
 
     <TextView
         android:id="@+id/txtTurn"
-        android:layout_width="108dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/minecraft"
         android:text="Start"
-        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnTurn"
         app:layout_constraintEnd_toEndOf="@+id/btnTurn"
         app:layout_constraintStart_toStartOf="@+id/btnTurn"
@@ -107,15 +108,16 @@
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hud_box" />
+        app:srcCompat="@drawable/hud_name" />
 
     <TextView
         android:id="@+id/txtTurnLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:fontFamily="@font/minecraft"
         android:text="Turn (1)"
-        android:textColor="@color/white"
+        android:textColor="#ffb703"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTurnLog"
         app:layout_constraintEnd_toEndOf="@+id/imgTurnLog"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/imgTurnLog"
@@ -152,9 +154,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/minecraft"
             android:text="noobmaster69"
-            android:textColor="@color/white"
+            android:textColor="#90be6d"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,8 +167,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/minecraft"
             android:text="Player HP"
-            android:textColor="@color/white"
+            android:textColor="#e63946"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPlayerName" />
 
@@ -175,8 +179,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/minecraft"
             android:text="Player MP"
-            android:textColor="@color/white"
+            android:textColor="#00b4d8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPlayerHP" />
 
@@ -211,10 +216,11 @@
             android:id="@+id/txtEnemyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/minecraft"
             android:text="TONDO MAN"
-            android:textColor="@color/white"
+            android:textColor="#c77dff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,8 +230,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/minecraft"
             android:text="Enemy HP"
-            android:textColor="@color/white"
+            android:textColor="#e63946"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEnemyName" />
 

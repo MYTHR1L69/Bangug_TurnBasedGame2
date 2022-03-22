@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtPlayerMP.setText(String.valueOf(playerMP));
                     txtEnemyHP.setText(String.valueOf(enemyHP));
                     txtLog.setText(""+playerName+" used burn! "+enemyName+" will \nbe burned for "+burnDuration+" turns!");
-                    txtTurn.setText("Enemy's Turn");
+                    txtTurn.setText("Enemy's \nturn");
                 } else {
                     txtLog.setText("Cannot use skill. Your mana is insufficient.");
                 }
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtPlayerHP.setText(String.valueOf(playerHP));
                     txtPlayerMP.setText(String.valueOf(playerMP));
                     txtEnemyHP.setText(String.valueOf(enemyHP));
-                    txtLog.setText(""+playerName+" used lifesteal! He dealt 200 damage \nto "+enemyName+" and gained 90 HP.");
-                    txtTurn.setText("Enemy's turn");
+                    txtLog.setText(""+playerName+" used lifesteal! He dealt \n200 damage to "+enemyName+" and gained 90 HP.");
+                    txtTurn.setText("Enemy's \nturn");
                 } else {
                     txtLog.setText("Cannot use skill. Your mana is insufficient.");
                 }
@@ -173,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNum++;
                     txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtEnemyHP.setText(String.valueOf(enemyHP));
-                    txtLog.setText(""+playerName+" dealt "+playerDPT+" damage to "+enemyName+"!");
-                    txtTurn.setText("Enemy's turn");
+                    txtLog.setText(""+playerName+" dealt "+playerDPT+" damage \nto "+enemyName+"!");
+                    txtTurn.setText("Enemy's \nturn");
                     if (enemyHP < 0) {
                         resetGame();
                         txtLog.setText(""+playerName+" dealt "+playerDPT+" damage and killed\n"+enemyName+"! He is victorious!");
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNum++;
                     txtTurnLog.setText("Turn ("+ turnNum +")");
                     txtPlayerHP.setText(String.valueOf(playerHP));
-                    txtLog.setText(""+enemyName+" dealt "+enemyDPT+" damage to "+playerName+"!");
+                    txtLog.setText(""+enemyName+" dealt "+enemyDPT+" damage \nto "+playerName+"!");
                     txtTurn.setText("Attack");
                     if (playerHP < 0) {
                         resetGame();
